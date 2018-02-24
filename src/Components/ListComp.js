@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import {Card, Container, CardTitle, Col, Row} from 'reactstrap';
 
-class List extends Component {
+class ListComp extends Component {
 
   constructor(props) {
     super(props);
@@ -10,7 +11,6 @@ class List extends Component {
   }
 
 componentWillMount(){
-
 
   fetch("https://graph.facebook.com/v2.9/clubpatassucias/posts?access_token=403108406768407|amJGwlHjGLWXcKOMow0MGmJpTgU")
        .then(response => response.json())
@@ -27,22 +27,33 @@ componentWillMount(){
   render() {
       if (this.state.data['data']) {
      return (
-       <div className="container-fluid">
-         <div className="row">
+       <Container>
+
        {this.state.data['data'].map((item) => {
-               return ( <li key={item.id}>{item.message}</li> );
+               return (
+                 <div style={{marginRight: "5%", marginLeft: "5%"}}>
+                 <Card style={{background: "rgba(255, 255, 255, 0.94)", cursor: "pointer"}}>
+             				<Row>
+                      <Col>
+                        <h4>{item.message}</h4>
+                      </Col>
+             					<hr/>
+             				</Row>
+             		</Card>
+                </div>
 
-             })}
+             );
+                  })}
 
-         </div>
-       </div>
+       </Container>
+
      )
    } else {
-     return <p className="text-center">Cargando empleados...</p>
+     return <p className="text-center">Cargando Datos...</p>
    }
 
 
   }
 }
 
-export default List;
+export default ListComp;
