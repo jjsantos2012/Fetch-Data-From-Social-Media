@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #f6f6f6;
 }
 
 .App-logo {
@@ -9,8 +10,9 @@
 
 .App-header {
   background-color: #222;
-  height: 150px;
+  height: 50px;
   padding: 20px;
+  margin-bottom: 1%;
   color: white;
 }
 
@@ -26,3 +28,20 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+all {
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 50px;
+    padding: 10px;
+}
+
+    all central {
+        margin: auto;
+        width: 80%;
+        /* background-image: url(../images/fondo1.png); */
+        padding: 10px;
+        border-radius: 20px;
+        font-size: 20px;
+        color: white;
+        text-shadow: -1px 1px 1px black;
+    }
