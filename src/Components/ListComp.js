@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './CSS/publicacion.css';
-import {Card,Container, CardTitle, Col } from 'reactstrap';
-import {Row,Form, FormGroup, Input, Button,Label } from 'reactstrap';
+import {Card,Container, Col,InputGroup,InputGroupAddon } from 'reactstrap';
+import {Row, Input, Button} from 'reactstrap';
 
 
 class ListComp extends Component {
@@ -22,7 +22,7 @@ class ListComp extends Component {
 
 componentWillMount(){
 
-  fetch("https://graph.facebook.com/v2.9/clubpatassucias/posts?access_token=403108406768407|amJGwlHjGLWXcKOMow0MGmJpTgU")
+  fetch("https://graph.facebook.com/v2.9/PCRDominicana/posts?access_token=403108406768407|amJGwlHjGLWXcKOMow0MGmJpTgU")
        .then(response => response.json())
        .then(json => {
          console.log(json);
@@ -56,22 +56,30 @@ handleChange(e) {
      return (
 
        <Container>
-         <Form>
-        <FormGroup>
-          <Label for="exampleEmail">Page ID:</Label>
-          <Input type="text" name="criteria" required="true" onChange={this.handleChange} value={this.state.criteria} placeholder="Add the Page ID you what to search..." />
-            <Button color="primary" onClick={() => {this.searchForPosts(this.state.criteria)}}>Search</Button>
-        </FormGroup>
-        </Form>
+         <div>
+             <Row>
+             <Col sm="12" md={{ size: 8, offset: 2 }}>
+               <InputGroup>
+                  <Input type="text" name="criteria" required="true" onChange={this.handleChange}
+                     value={this.state.criteria} placeholder="Add the Page ID you what to search..." />
+                  <InputGroupAddon addonType="append">
+                    <Button outline color="primary" onClick={() => {this.searchForPosts(this.state.criteria)}}>Search</Button>
+                  </InputGroupAddon>
+                </InputGroup>
+             </Col>
+             </Row>
+        </div>
+
+        <hr/>
 
        {this.state.data['data'].map((item) => {
                return (
                  <div key={item.id}style={{marginRight: "5%", marginLeft: "5%"}}>
-                 <Card style={{background: "rgba(255, 255, 255, 0.94)", cursor: "pointer"}}>
+                 <Card>
              				<Row>
                       <Col>
-                        <h4>{item.story}</h4>
-                        <h4>{item.message}</h4>
+                        <h6>{item.story}</h6>
+                        <h6>{item.message}</h6>
                       </Col>
              				</Row>
              		</Card>
@@ -84,7 +92,29 @@ handleChange(e) {
 
      )
    } else {
-     return <p className="text-center">Cargando Datos...</p>
+     return (
+       <Container>
+         <div>
+             <Row>
+             <Col sm="12" md={{ size: 8, offset: 2 }}>
+               <InputGroup>
+                  <Input type="text" name="criteria" required="true" onChange={this.handleChange}
+                     value={this.state.criteria} placeholder="Add the Page ID you what to search..." />
+                  <InputGroupAddon addonType="append">
+                    <Button outline color="primary" onClick={() => {this.searchForPosts(this.state.criteria)}}>Search</Button>
+                  </InputGroupAddon>
+                </InputGroup>
+             </Col>
+             </Row>
+        </div>
+
+        <hr/>
+
+        <h3 className="text-center">The criteria that you have entered is wrong or do not exist, Please try again.</h3>
+
+       </Container>
+
+     )
    }
 
 
