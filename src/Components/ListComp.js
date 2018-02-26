@@ -3,14 +3,12 @@ import './CSS/publicacion.css';
 import {Card,Container, Col,InputGroup,InputGroupAddon } from 'reactstrap';
 import {Row, Input, Button} from 'reactstrap';
 
-
 class ListComp extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {data: [{created_time: "2018-02-23T17:42:32+0000",
-       message: "Anunciamos el inicio de nuestro blog. Pueden verlo en https://clubpatassucias.blogspot.com/",
-        id: "1947984875458605_2016570478600044"}],
+    this.state = {
+      data: [],
       criteria:'',
       value:''
     };
@@ -46,12 +44,15 @@ searchForPosts(criteria){
 
 }
 
+
+
 handleChange(e) {
   this.setState({ [e.target.name]: e.target.value});
 }
 
 
   render() {
+    
       if (this.state.data['data']) {
      return (
 
